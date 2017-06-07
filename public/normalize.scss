@@ -425,3 +425,10 @@ td,
 th {
   padding: 0;
 }
+
+html, body, div, section, ul, li, ol, p, h1,
+h2, h3, h4, h5, h6, input, button, img, header,
+footer, main{
+  box-sizing: border-box;
+  z-index: 5;
+}
