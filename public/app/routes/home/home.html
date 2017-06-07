@@ -1,10 +1,9 @@
 
 <section class='home_main_container'>
 
+    
     <div class='stats'>
-        <div class='h2_container'>
-            <h2>Stats</h2>
-        </div>
+        <h2>Stats</h2>
 
         <h3>Winnings:</h3>
         <h5>Cars won: {{ carsWon }}</h5>
@@ -15,9 +14,21 @@
         <h5>Don't switch: {{ staySuccess }}%</h5>
     </div>
 
-    <div class='door' id='door1'>1</div>
-    <div class='door' id='door2'>2</div>
-    <div class='door' id='door3'>3</div>
-    <p id='instructions'>Pick a door</p>
+    <div class='doorframe' id='door1'>
+        <div class='door' ng-click='pickDoor(1)' id='1'>1</div>
+        <img src='./img/checkmark.png' ng-show='check1' class='checkmark'>
+        <p class='prize' id='p1'>{{ prize1 }}</p>
+    </div>
+    <div class='doorframe' id='door2'>
+        <div class='door' ng-click='pickDoor(2)' id='2'>2</div>
+        <img src='./img/checkmark.png' ng-show='check2' class='checkmark'>
+        <p class='prize' id='p2'>{{ prize2 }}</p>
+    </div>
+    <div class='doorframe' id='door3'>
+        <div class='door' ng-click='pickDoor(3)' id='3'>3</div>
+        <img src='./img/checkmark.png' ng-show='check3' class='checkmark'>
+        <p class='prize' id='p3'>{{ prize3 }}</p>
+    </div>
+    <p id='instructions' ng-click='playGame()'>Pick a door</p>
 
 </section>
