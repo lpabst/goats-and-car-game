@@ -3,6 +3,10 @@ angular.module("app")
 
   $scope.carsWon = 2;
   $scope.goatsWon = 1;
+  $scope.switchSuccess = 20;
+  $scope.staySuccess = 80;
+
+  
 
 
 });
