@@ -1,6 +1,16 @@
 
 <section class='home_main_container'>
 
+    <div class='host_explanation_box' ng-show='showHostExplanationBox'>
+        <p>You selected door {{ userChoice }}. The Host comes 
+            out and opens door {{ doorOpenedByHost }}, revealing a
+            goat behind it.</p>
+        <p> You can now either stick with the door
+            you selected, or switch to the other unopened door. Once 
+            you click a door, it will open, and you get to keep whatever
+            is behind it!</p>
+        <button ng-click='hideHostExplanationBox()'>OK</button>
+    </div>
     
     <div class='stats'>
         <h2>Stats</h2>

@@ -3,7 +3,7 @@ angular.module("app")
 
     var doors = [];
 
-    $scope.carsWon = 0;
+    $scope.carsWon = stayedAndWon + switchedAndWon;
     $scope.goatsWon = 0;
 
     var timesSwitched = 0;
@@ -19,6 +19,8 @@ angular.module("app")
     $scope.prize1 = '';
     $scope.prize2 = '';
     $scope.prize3 = '';
+    $scope.showHostExplanationBox = false;
+    
 
     var finalSelection;
     var originalChoice;
@@ -47,10 +49,10 @@ angular.module("app")
 
     $scope.updateStats = function(num){
         if (doors[num-1] == 'car' && finalChoice == originalChoice){
-            $scope.carsWon++;
+            stayedAndWon++;
             timesStayed++;
         }else if(doors[num-1] == 'car' && finalChoice != originalChoice){
-            $scope.carsWon++;
+            switchedAndWon++;
             timesSwitched++;
         }else if(doors[num-1] != 'car' && finalChoice != originalChoice){
             $scope.goatsWon++;
@@ -66,16 +68,19 @@ angular.module("app")
         let id = '#'+num;
         let prize = '#p'+num;
         if (finalSelection){
-            $scope.hideAllCheckMarks();
-            finalChoice = num;
-            $scope.updateStats(num);
-            $(id).css('transform', 'rotateY(-65deg)');
-            $(prize).css('left', '75px');
-            $instructions.text('Play Again?');
-            $instructions.css('border', '2px solid black');
+            if (num != $scope.doorOpenedByHost){$scope.showHostExplanationBox = false;
+                $scope.hideAllCheckMarks();
+                finalChoice = num;
+                $scope.updateStats(num);
+                $(id).css('transform', 'rotateY(-65deg)');
+                $(prize).css('left', '75px');
+                $instructions.text('Play Again?');
+                $instructions.css('border', '2px solid black');
+            }
         }else{
             $scope.checkMark(num); 
             originalChoice = num;
+            $scope.hostOpensDoor(num);
         }
     }
 
@@ -88,6 +93,35 @@ angular.module("app")
             $scope.check3 = true;
         }        
         finalSelection = true;
+    }
+
+    $scope.hostOpensDoor = function(userChoice){
+        $scope.showHostExplanationBox = true;
+        $scope.userChoice = userChoice;
+
+        var hostOptions = [];
+        for (var i = 1; i <= 3; i ++){
+          if (i != userChoice){
+            hostOptions.push(i);
+          }
+        }
+
+        var rand, doorOpened, hostChoice;
+
+        for (var i = 0; i < 5; i){
+          rand = Math.floor(Math.random()*2);
+          doorOpened = hostOptions[rand];
+          hostChoice = doors[doorOpened-1];
+          if (hostChoice != 'car'){
+            i = 10;
+          }
+        }
+
+        $scope.doorOpenedByHost = doorOpened;
+    }
+
+    $scope.hideHostExplanationBox = function(){
+        $scope.showHostExplanationBox = false;
     }
 
     $scope.hideAllCheckMarks = function(){

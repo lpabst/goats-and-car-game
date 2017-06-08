@@ -7,6 +7,18 @@
     background-size: cover;
     perspective: 1500px;
 
+    .host_explanation_box{
+        width: 60%;
+        height: 60%;
+        position: fixed;
+        top: 20%;
+        left: 20%;
+        background: gray;
+        border-radius: 6px;
+        z-index: 200;
+        padding: 10px 10px 10px 10px;
+    }
+
     .stats{
         width: 160px;
         height: 280px;
