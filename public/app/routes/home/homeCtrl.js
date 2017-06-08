@@ -39,7 +39,8 @@ angular.module("app")
         $door.css('transform', 'rotateY(0deg)');
         $instructions.text('Pick a door');
         $instructions.css('border', 'none');
-        $prize.css({'display': 'none', 'left': '10px'}).delay(2000).css('display', 'block');
+        $prize.css({'font-size': '1px', 'left': '10px'});
+        setTimeout(function(){$prize.css('font-size', '25px')}, 2000);
         $scope.hideAllCheckMarks();
     }
 
