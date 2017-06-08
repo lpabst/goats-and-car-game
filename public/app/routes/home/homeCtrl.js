@@ -3,15 +3,12 @@ angular.module("app")
 
     var doors = [];
 
-    $scope.carsWon = stayedAndWon + switchedAndWon;
     $scope.goatsWon = 0;
 
     var timesSwitched = 0;
     var switchedAndWon = 0;
     var timesStayed = 0;
     var stayedAndWon = 0;
-    $scope.switchSuccess = (switchedAndWon / timesSwitched)*100;
-    $scope.staySuccess = (stayedAndWon / timesStayed)*100;
 
     $scope.check1;
     $scope.check2;
@@ -21,7 +18,6 @@ angular.module("app")
     $scope.prize3 = '';
     $scope.showHostExplanationBox = false;
     
-
     var finalSelection;
     var originalChoice;
     var finalChoice;
@@ -30,7 +26,7 @@ angular.module("app")
     var $instructions = $('#instructions');
     var $prize = $('.prize');
 
-  //Door logic
+//Door logic
     $scope.playGame = function(){
         //reset doors and door logic
         doors = ['goat', 'goat', 'goat'];
@@ -59,11 +55,13 @@ angular.module("app")
             timesSwitched++;
         }else if(doors[num-1] != 'car' && finalChoice == originalChoice){
             $scope.goatsWon++;
-            timesStayed++;
-        }
+            timesStayed++;       }
+        $scope.carsWon = stayedAndWon + switchedAndWon;
+        $scope.switchSuccess = (switchedAndWon / timesSwitched)*100;
+        $scope.staySuccess = (stayedAndWon / timesStayed)*100;
     }
 
-  //Visual effects
+//Visual effects
     $scope.pickDoor = function(num){
         let id = '#'+num;
         let prize = '#p'+num;
