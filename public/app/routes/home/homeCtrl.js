@@ -118,6 +118,11 @@ angular.module("app")
         }
 
         $scope.doorOpenedByHost = doorOpened;
+
+        let id = '#' + $scope.doorOpenedByHost;
+        let prize = '#p' + $scope.doorOpenedByHost;
+        $(id).css('transform', 'rotateY(-65deg)');
+        $(prize).css('left', '75px');
     }
 
     $scope.hideHostExplanationBox = function(){
